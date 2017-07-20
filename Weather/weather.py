@@ -1,4 +1,5 @@
 import requests
+from pprint import pprint
 
 def location():
 	res=requests.get('http://ipinfo.io/')
@@ -14,24 +15,28 @@ def location_coordinates():
 	print("Latitude: {}\nLongitude: {}\nCity: {}".format(lat,lon,city))
 
 def weather_data(query):
-	res=requests.get('http://api.openweathermap.org/data/2.5/weather?'+query+'&appid=ac7c75b9937a495021393024d0a90c44&units=metric');
+	res=requests.get('http://api.openweathermap.org/data/2.5/weather?'+query+'&appid=ac7c75b9937a495021393024d0a90c44&units=metric');	
 	return res.json();
 
-def print_temp(result):
-	print("{}'s temperature : {}°C ".format(result['name'],result['main']['temp']))
+def print_temp(result,city):
+	print("{}'s temperature : {}°C ".format(city,result['main']['temp']))
+	print("Wind speed:{} m/s".format(result['wind']['speed']))
+	print("Weather:{}".format(result['weather'][0]['main']))
+	print("Description:{}".format(result['weather'][0]['description']))
+
 
 def current_temperature():
 	lat,lon,city=location();
 	query='lat='+lat+'&lon='+lon;
 	data=weather_data(query);
-	print_temp(data);
+	print_temp(data,city);
 
 def temp_by_city():
 	city=input('Enter the city:')
 	print()
 	query='q='+city;
 	data=weather_data(query);
-	print_temp(data)
+	print_temp(data,city)
 	
 def menu():
 	print()
@@ -39,6 +44,9 @@ def menu():
 	print('2. Current Temperature')
 	print('3. Temperature by city')
 	choice=input('\nEnter your choice:')
+	while (choice not in ['1','2','3']):
+		print('Wrong choice')
+		choice=input('\nEnter your choice:')
 	print()
 
 	return choice;
