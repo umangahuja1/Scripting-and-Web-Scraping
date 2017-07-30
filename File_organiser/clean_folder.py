@@ -37,7 +37,7 @@ def print_before(path):
 	print(Fore.LIGHTBLUE_EX  + "Before cleaning\n" + Fore.RESET)
 
 	for files in os.listdir(path):
-		print(files,sep=',\t')
+		print(files,end='\t')
 	print()
 
 
@@ -85,7 +85,6 @@ def organise(new_dir_path,new_dir):
 						os.rmdir(os.path.join(path,f))	
 
 					else:
-						print(3)
 						os.rename(f,inner_folder)
 
 
@@ -94,7 +93,7 @@ def print_after(path):
 	print(Fore.LIGHTBLUE_EX  + "\nAfter cleaning\n" + Fore.RESET)
 
 	for files in os.listdir(path):
-		print(files,sep=',\t')
+		print(files,end='\t')
 
 	print(Fore.LIGHTMAGENTA_EX  + "\n\nCLEANED\n" + Fore.RESET)
 
