@@ -59,7 +59,7 @@ def destination_path(path):
 	return new_dir_path,new_dir
 
 
-def organise(new_dir_path,new_dir):
+def organise(new_dir_path,new_dir,path):
 	for ext in extension:
 		folder = os.path.join(new_dir_path,ext) 
 		
@@ -102,7 +102,7 @@ def file_manage():
 	path = source_path(dir_name)
 	print_before(path)
 	new_dir_path, new_dir = destination_path(path)
-	organise(new_dir_path, new_dir)
+	organise(new_dir_path, new_dir,path)
 	print_after(path)
 
 
