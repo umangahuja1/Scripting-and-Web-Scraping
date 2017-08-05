@@ -16,7 +16,6 @@ def download():
 	file_name = dt.now().strftime("%Y-%m-%d")
 	user = os.getenv('USER')
 	path='/home/'+user+'/Pictures/BingWallpapers'
-	print(path)
 	full_path=os.path.join(path,file_name)
 	
 	if not os.path.exists(path):
