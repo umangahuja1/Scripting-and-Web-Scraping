@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+from prettytable import PrettyTable
 
 
 def Menu():
@@ -26,7 +27,7 @@ def Menu():
 
 
 def Gender():
-	gender=input('Enter you choice:')
+	gender=input('Enter your choice:')
 	code={'1':'mens','2':'womens'}
 
 	if gender in code:
@@ -48,7 +49,7 @@ def TeamOrPlayer():
 		print('\nInvalid Input\nTry Again\n')
 		return TeamOrPlayer();
 
-
+	
 def Mode():
 	choice=input('Enter your choice:')
 	word={'1':'/test','2':'/odi','3':'/t20i'}
@@ -136,11 +137,11 @@ def SOUP(url,tp):
 
 
 def Print(data):
-	print('\nRANKING \t TEAM \t\t\t  RATING')
+	print('\nRANKING \t TEAM\t\t\t\tRATING')
 	for i in sorted(data):
 		print('{:<10}       '.format(i),end='')
 		for j in range(len(data[i])):
-			print('{:<20}'.format(data[i][j]),end='     ')
+			print('{:<26}'.format(data[i][j]),end='     ')
 		print()
 
 
@@ -149,8 +150,6 @@ def main():
 	url,tp=URL()
 	data=SOUP(url,tp)
 	Print(data)	
-
-
 
 
 if __name__=='__main__':
