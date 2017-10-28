@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests,sys
 
-handle = input('Enter twitter handle to check following of a user : ') 
+handle = input('Enter twitter handle to check followers of a user : ') 
 res = requests.get('https://twitter.com/'+handle)
 soup = BeautifulSoup(res.text,'lxml')
 
