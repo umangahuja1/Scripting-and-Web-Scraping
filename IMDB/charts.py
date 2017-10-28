@@ -9,9 +9,11 @@ def select():
 	options = {
 		1: ('Top movies' , 'top'),
 		2: ('Most Popular Movies' , 'moviemeter'),
-		3: ('Top TV Shows' , 'toptv'),
-		4: ('Top English Movies' , 'top-english-movies'),
+		3: ('Top English Movies' , 'top-english-movies'),
+		4: ('Top TV Shows' , 'toptv'),
 		5: ('Most Popular TV Shows' , 'tvmeter'),
+		6: ('Low Rated Movies', 'bottom'),
+		7: ('Top Box Office collection', 'boxoffice')
 	}
 
 	for i,option in enumerate(options,1):
@@ -22,6 +24,7 @@ def select():
 		print('Wrong choice')
 		choice = int(input('\nEnter your choice: '))
 
+	print()
 	return options[choice][1]
 
 
@@ -32,7 +35,7 @@ def get_data(option):
 	result = []
 	for card in card_list:
 		try:
-			name = card.find('h4').text.replace("\n"," ").strip()
+			name = card.find('h4').text.replace("\n"," ").lstrip("0123456789.- ")
 		except: 
 			pass
 		try:
