@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests,sys
 
-#you can also get the twitter handle from user
 handle = input('Enter twitter handle to check favorite/liked post of a user : ') 
 res = requests.get('https://twitter.com/'+handle)
 soup = BeautifulSoup(res.text,'lxml')
