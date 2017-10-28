@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests,sys
 
-#you can also get the twitter handle from user
 handle = input('Enter twitter handle : ') 
 res = requests.get('https://twitter.com/'+handle)
 soup = BeautifulSoup(res.text,'lxml')
