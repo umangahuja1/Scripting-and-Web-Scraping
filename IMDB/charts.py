@@ -1,6 +1,8 @@
 ''' Charts and rating from IMDBB '''
 
 from bs4 import BeautifulSoup
+from terminaltables import DoubleTable
+from colorclass import Color
 import requests
 
 def select():
@@ -23,11 +25,11 @@ def select():
 	return options[choice][1]
 
 
-def display(option):
+def get_data(option):
 	res = requests.get('http://m.imdb.com/chart/'+option)
 	soup = BeautifulSoup(res.text, 'lxml')
 	card_list = soup.find_all('span',{'class':'media-body media-vertical-align'})
-
+	result = []
 	for card in card_list:
 		try:
 			name = card.find('h4').text.replace("\n"," ").strip()
@@ -37,12 +39,32 @@ def display(option):
 			rating = card.find('p').text.strip()
 		except:
 			pass
-		print('{:<100}\t{}\n'.format(name,rating))
+
+		result.append((name,rating))
+
+	return result
+
+
+def make_table(result):
+    table_data = [['S.No', 'Name', 'Rating']]
+
+    for s_no,res in enumerate(result,1):
+        row = []
+        row.extend((Color('{autoyellow}' + str(s_no) + '.' + '{/autoyellow}'),
+                        Color('{autogreen}' + res[0] + '{/autogreen}'),
+                        Color('{autoyellow}' + res[1] + '{/autoyellow}')))
+        table_data.append(row)
+
+    table_instance = DoubleTable(table_data)
+    table_instance.inner_row_border = True
+
+    print(table_instance.table)
+    print()
 		
 def main():
 	option = select()
-	print()
-	display(option)
+	data = get_data(option)
+	make_table(data)
 
 if __name__ == '__main__':
 	main()
