@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import requests,sys
+import requests
 
 handle = input('Enter twitter handle to check followers of a user : ') 
 res = requests.get('https://twitter.com/'+handle)
@@ -12,4 +12,3 @@ try:
 
 except:
     print('Cannot find the handle right now')
-    sys.exit()
