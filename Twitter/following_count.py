@@ -7,7 +7,7 @@ soup = BeautifulSoup(res.text,'lxml')
 
 try:
     following_box = soup.find('li',{'class':'ProfileNav-item ProfileNav-item--following'})
-    following = follow_box.find('a').find('span',{'class':'ProfileNav-value'})
+    following = following_box.find('a').find('span',{'class':'ProfileNav-value'})
     print("Number of people {} is following are {}: ".format(handle,following.get('data-count')))
 
 except:
